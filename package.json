@@ -13,7 +13,7 @@
     "lint": "eslint \"src/**/*.ts\"",
     "prepublish": "npm run build",
     "fmt": "prettier --config .prettierrc \"**/*.{ts,mjs}\" --write",
-    "run": "ts-node"
+    "aoc": "ts-node src/main.ts"
   },
   "keywords": [
     "advent-of-code"
