@@ -1,4 +1,4 @@
-import { readFileSync, statSync } from 'fs'
+import { existsSync, readFileSync, statSync } from 'fs'
 import { join } from 'path'
 
 export const readdirrecursive = (dir: string): string[] => {
@@ -13,6 +13,7 @@ export const readdirrecursive = (dir: string): string[] => {
 }
 
 export const transformInput = <T>(file: string, func: (text: string) => T): T => {
+    if (!existsSync(file)) return func('')
     const raw = readFileSync(file, 'utf8')
     return func(raw)
 }
