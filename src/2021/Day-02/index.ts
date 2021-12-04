@@ -5,12 +5,7 @@ type Result = Record<'partone' | 'parttwo', number>
  * @param lines - Input array of lines
  * @returns {Result}
  */
-export const run = (lines: Array<string>): Result => {
-    const instructions = lines.map((line) => {
-        const [command, value] = line.split(' ')
-        return { command, value: parseInt(value) }
-    })
-
+export const run = (instructions: ReturnType<typeof parse>): Result => {
     const partone = () => {
         const [x, y] = instructions.reduce(([x, y], { command, value }) => {
             switch (command) {
@@ -53,6 +48,12 @@ export const run = (lines: Array<string>): Result => {
     return { partone: partone(), parttwo: parttwo() }
 }
 
-export const parse = (input: string): Array<string> => {
-    return input.trim().split('\n')
+export const parse = (input: string): Array<{ command: string; value: number }> => {
+    return input
+        .trim()
+        .split('\n')
+        .map((line) => {
+            const [command, value] = line.split(' ')
+            return { command, value: parseInt(value) }
+        })
 }
