@@ -13,14 +13,14 @@ const main = async () => {
 
     const path = (file?: string) => join(__dirname, '2021', dir, file ?? '')
 
-    const { run, parse } = await import(path('index.ts'))
+    const { run, parse = (text: string) => text.trim() } = await import(path('index.ts'))
 
     console.log(`Running Day ${day}`)
 
     try {
-        const input = transformInput(path('input.txt'), parse ?? ((text) => text.trim()))
+        const input = transformInput(path('input.txt'), parse)
         const result = await run(input)
-        console.log(`Result: ${result}`)
+        console.log(`Result:`, result)
     } catch (e) {
         console.log(e)
     }
