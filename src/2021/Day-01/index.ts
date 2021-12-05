@@ -10,7 +10,7 @@ export const run = (lines: Array<number>): Result => {
 
     return {
         partone: increases(lines, 1),
-        parttwo: increases(lines, 2)
+        parttwo: increases(lines, 3)
     }
 }
 
